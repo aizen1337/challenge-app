@@ -10,7 +10,8 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useUser } from '../context/useUser';
-
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 export default function Navbar() {
     const {currentUser, logOut} = useUser()
     async function handleLogout() {
@@ -37,6 +38,9 @@ export default function Navbar() {
             sx={{
               mr: 2,
               display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1,
               fontFamily: 'system-ui',
               fontWeight: 700,
               letterSpacing: '.1rem',
@@ -44,7 +48,27 @@ export default function Navbar() {
               textDecoration: 'none',
             }}
           >
-            Challenge
+            Home
+            <HomeOutlinedIcon/>
+          </Typography>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/create"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1,
+              fontFamily: 'system-ui',
+              fontWeight: 400,
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+           Create a challenge
+           <AddCircleOutlineOutlinedIcon/>
           </Typography>
           {
           currentUser 
@@ -53,7 +77,7 @@ export default function Navbar() {
             flexGrow: 0, 
             display: 'flex',
             alignItems: 'center',
-            gap: 4
+            gap: 2
              }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

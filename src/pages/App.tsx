@@ -1,6 +1,6 @@
 import { useUser } from "../context/useUser"
 import Login from "./Login"
-import Dashboard from "./Dashboard"
+import Dashboard from "./Dashboard/Dashboard"
 const App = () => {
     const {currentUser} = useUser()
     return currentUser ? <Dashboard/> : <Login/>
