@@ -1,27 +1,39 @@
-import { collection, addDoc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { database } from "../lib/firebase";
 import Player from "./Player";
+import ChallengeDataType from "./ChallengeDataType";
 export default class Challenge {
     private challenge_length = 30
     private players: Player[]
-    constructor(challenge_length?: number, ...players: Player[]) {
+    private title = 'Challenge'
+    constructor(title?: string, challenge_length?: number, ...players: Player[]) {
         this.checkChallengeLength(challenge_length);
         challenge_length && (this.challenge_length = challenge_length);
+        title && (this.title = title)
         this.players = [...players]
         this.setupChallenge()
     }
     async setupChallenge() {
-        const createdChallenge = await addDoc(collection(database, 'challenges'),{})
-        const challengeData = new Map()
-        for(let day = 0; day <= this.challenge_length; day++) {
-            challengeData.set(day, null)
+        const playersArray = this.players.map((player) => player.id)
+        const challengeData: ChallengeDataType = {}
+        for(let day = 1; day <= this.challenge_length; day++) {
+            challengeData[day] = []
             for(const player of this.players) {
-                const playerObject = new Map()
-                playerObject.set(player.id, player.objectives)
-                challengeData.set(day, playerObject)
+                const playerObject = {
+                    [player.id]: []
+                }
+                for(const objective of player.objectives) {
+                    playerObject[player.id].push({[objective]: false})
+                }
+                challengeData[day].push(playerObject)
             }
         }
-        return updateDoc(createdChallenge, {challengeData})
+        const reference = await addDoc(collection(database, 'challenges'), {
+            title: this.title,
+            players: playersArray,
+            data: challengeData,
+        })
+        return reference.id
     }
     checkChallengeLength(challenge_length?: number) {
         if(challenge_length && challenge_length < 7) {

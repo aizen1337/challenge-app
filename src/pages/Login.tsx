@@ -26,6 +26,7 @@ export default function Login() {
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          
           <Box
             sx={{
               my: 8,
@@ -35,7 +36,10 @@ export default function Login() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Typography component="h1" variant="h3" sx={{m:5}}>
+              YourOwnChallenge
+            </Typography>
+            <Avatar sx={{ m: 1, bgcolor: 'error.dark' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
@@ -47,7 +51,7 @@ export default function Login() {
                 onClick={() => signupWithGoogle()}
                 fullWidth
                 variant="outlined"
-                color="secondary"
+                color="error"
                 endIcon={<GoogleIcon/>}
                 sx={{ mt: 3, mb: 2 }}
               >

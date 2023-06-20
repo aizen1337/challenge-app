@@ -2,15 +2,9 @@ import Objective from "./Objective";
 
 export default class Player {
     readonly id: string;
-    protected steps = 0;
-    protected objectives: Objective[] = [];
-    constructor(id: string) {
+    public objectives: Objective[] = [];
+    constructor(id: string, objectives: Objective[]) {
         this.id = id
-    }
-    setSteps(amount: number) {
-        this.steps = amount
-    }
-    addObjective(objective: Objective) {
-        this.objectives.push(objective);
+        this.objectives = objectives;
     }
 }
