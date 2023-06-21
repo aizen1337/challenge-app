@@ -1,6 +1,6 @@
 export default class Objective {
-    private goal: string
-    private state: boolean
+    public goal: string
+    public state: boolean
     constructor(goal: string, state: boolean) {
         this.goal = goal
         this.state = state

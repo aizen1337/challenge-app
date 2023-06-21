@@ -1,6 +1,6 @@
 import { Alert, Button, TextField, Typography } from "@mui/material"
 import { FormEvent, useState } from "react"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Snackbar from '@mui/material/Snackbar';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import Objective from "../../classes/Objective"
@@ -9,15 +9,15 @@ import Player from "../../classes/Player";
 import { useUser } from "../../context/useUser";
 const CreateChallenge = () => {
   const {currentUser} = useUser()
+  const router = useNavigate()
   async function setupChallenge(event: FormEvent) {
+    console.log(challengeGoals)
     event.preventDefault()
     if(currentUser) {
     const playerInstance = new Player(currentUser.uid, challengeGoals)
-    const challengeInstance = await new Challenge(challengeName, challengeLength, playerInstance).setupChallenge()
+    new Challenge(challengeName, challengeLength, playerInstance)
     setVisible(true)
-    setTimeout(() => {
-      <Navigate to={challengeInstance}/>
-    }, 2000)
+    setTimeout(() => router('/'), 2000)
   }
 }
   const [challengeName, setChallengeName] = useState<string>('Challenge')
@@ -27,11 +27,15 @@ const CreateChallenge = () => {
   const challengeGoals: Objective[] = []
   return (
     <>
-    <Snackbar open={visible} autoHideDuration={4000}>
+    <Snackbar open={visible} autoHideDuration={4000} anchorOrigin={{
+      horizontal: 'center',
+      vertical: 'top'
+    }}>
       <Alert severity="success" sx={{ width: '100%' }}>
         Challenge has been successfully created! Redirecting...
       </Alert>
     </Snackbar>
+    {!visible &&
     <form style={{
       height: '90vh',
       width: '30rem'
@@ -66,7 +70,7 @@ const CreateChallenge = () => {
               error
               label={`Specify your ${goal} goal`}
               variant="outlined"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => challengeGoals.push(new Objective(event.target.value, false))}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => challengeGoals.push(new Objective(`${event.target.value}`, false))}
               fullWidth
               />
             )
@@ -88,6 +92,7 @@ const CreateChallenge = () => {
         Create
       </Button>
     </form>
+    }
     </>
   )
 }

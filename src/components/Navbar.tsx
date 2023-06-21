@@ -116,27 +116,27 @@ export default function Navbar() {
             Home
           </Typography>
           <Link to="/create">
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              display: {xs: 'none', md: 'flex'},
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 1,
-              fontFamily: 'system-ui',
-              fontWeight: 700,
-              color: 'red',
-              '&:hover': {
-                color: 'crimson',
-              },
-              textDecoration: 'none',
-            }}
-          >
-           Create a challenge
-           <AddCircleOutlineOutlinedIcon/>
-          </Typography>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                display: {xs: 'none', md: 'flex'},
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 1,
+                fontFamily: 'system-ui',
+                fontWeight: 700,
+                color: 'red',
+                '&:hover': {
+                  color: 'crimson',
+                },
+                textDecoration: 'none',
+              }}
+            >
+            Create a challenge
+            <AddCircleOutlineOutlinedIcon/>
+            </Typography>
           </Link>
           {
           currentUser 

@@ -1,4 +1,4 @@
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { database } from "../lib/firebase";
 import Player from "./Player";
 import ChallengeDataType from "./ChallengeDataType";
@@ -20,10 +20,10 @@ export default class Challenge {
             challengeData[day] = []
             for(const player of this.players) {
                 const playerObject = {
-                    [player.id]: []
+                    [player.id]: [] as {[key: string]: boolean}[]
                 }
                 for(const objective of player.objectives) {
-                    playerObject[player.id].push({[objective]: false})
+                    playerObject[player.id].push({[objective.goal]: objective.state})
                 }
                 challengeData[day].push(playerObject)
             }
