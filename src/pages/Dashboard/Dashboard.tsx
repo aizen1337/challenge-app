@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 const Dashboard = () => {
   return (
     <DashboardLayout>
-        <Typography variant="h2" sx={{m:5}}>
+        <Typography variant="h2" sx={{my:5}}>
         Your challenges
         </Typography>
         <AllChallenges/>

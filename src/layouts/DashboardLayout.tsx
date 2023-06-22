@@ -12,7 +12,6 @@ const DashboardLayout = ({children}: Props) => {
     <Navbar/>
     <Grid sx={{
         mt: 10,
-        p:0,
         width: '100vw',
         display: 'flex',
         flexDirection: 'column',

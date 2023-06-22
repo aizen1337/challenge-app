@@ -36,7 +36,7 @@ export default function Login() {
               alignItems: 'center',
             }}
           >
-            <Typography component="h1" variant="h3" sx={{m:5}}>
+            <Typography component="h1" variant="h4" sx={{m:5}}>
               YourOwnChallenge
             </Typography>
             <Avatar sx={{ m: 1, bgcolor: 'error.dark' }}>

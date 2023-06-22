@@ -1,4 +1,4 @@
-import { Alert, Button, TextField, Typography } from "@mui/material"
+import { Alert, Button, Grid, TextField, Typography } from "@mui/material"
 import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Snackbar from '@mui/material/Snackbar';
@@ -36,11 +36,13 @@ const CreateChallenge = () => {
       </Alert>
     </Snackbar>
     {!visible &&
-    <form style={{
-      height: '90vh',
-      width: '30rem'
-    }}
-    onSubmit={setupChallenge}>
+    <form onSubmit={setupChallenge}>
+    <Grid sx={{
+      width: {
+        xs: '90vw',
+        sm: '30rem'
+      }
+    }}>
       <TextField 
           sx={{mt:2}}
           required
@@ -91,6 +93,7 @@ const CreateChallenge = () => {
       <Button variant="outlined" color="error" type="submit" fullWidth sx={{mt:5}}>
         Create
       </Button>
+      </Grid>
     </form>
     }
     </>

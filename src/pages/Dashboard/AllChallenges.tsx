@@ -18,9 +18,15 @@ const AllChallenges = () => {
     })
    },[])
   return (
-    <Grid sx={{width: '20rem'}}>
+    <Grid sx={{
+      width: {xs: '90vw', md: '30rem'}
+      }}>
         {data?.map((challenge) => (
-          <Grid item key={challenge.id}>
+          <Grid item key={challenge.id} 
+          sx={{
+            my: 1,
+            borderRadius: '3rem'
+          }}>
             <Link to={challenge.id}>
             <Card>
               <CardContent>
